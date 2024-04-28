@@ -5,7 +5,6 @@ let reset=document.querySelector("#reset");
 let msg=document.querySelector("#mgs");
 let msgcontain=document.querySelector(".mgs-display");
 let newgameBtn=document.querySelector("#newgame");
-let won=false;
 let count=0;
 
 let turnO=false;
@@ -41,7 +40,8 @@ boxes.forEach((box) => {
         box.disabled=true;
         count++
         let won=check_winner();
-        if (count ==9 && !won){
+
+        if (count === 9 && !won){
             isdraw();
         }
         
@@ -85,10 +85,10 @@ check_winner=()=>{
 
         if (val1!="" && val2!="" && val3!=""){
             if (val1===val2 && val2===val3){
-                won=true;
+                // won=true;
                 display_winner(val1);
-
                 // disapleBtn()
+                return true;
             }
 
         }
@@ -101,7 +101,7 @@ check_winner=()=>{
 }
 
 // draw case
-isdraw=()=>{
+const isdraw=()=>{
     msg.innerText=`Match is draw`;
     msg.style.fontSize='50px';
     msgcontain.classList.remove("hide")
@@ -112,10 +112,8 @@ isdraw=()=>{
 const resetBtn =()=>{
     turnO=false;
     count=0;
-    msgcontain.classList.add("hide");
     enableAllBtn();
-    
-
+    msgcontain.classList.add("hide");
 }
 
 
